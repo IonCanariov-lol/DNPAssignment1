@@ -1,0 +1,43 @@
+﻿@page "/ViewPosts"
+
+@using Models
+@using LogInApp.Persistence
+@inject IFileContext _fileContext;
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<AuthorizeView>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Title</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in _posts)
+    {
+        <tr>
+            <a href="/viewPost/@item.PostTitle/@item.Body">@item.PostTitle</a>
+        </tr>
+    }
+
+    </tbody>
+</table>
+</AuthorizeView>
+@code {
+    private List<Post> _posts;
+
+    protected override async Task OnInitializedAsync()
+    {
+    // Generate the list of adultsDisplayed 
+        _posts = _fileContext.GetPostList();
+    }
+
+    private void ViewPost()
+    {
+    // <ViewPost></ViewPost>
+    }
+
+
+
+
+}

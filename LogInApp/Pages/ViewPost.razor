@@ -1,0 +1,19 @@
+﻿@page "/viewPost/{title}/{body}"
+
+
+<AuthorizeView>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Title: @Title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th>Body: @Body</th>
+    </tbody>
+</table>
+</AuthorizeView>
+@code {
+    [Parameter] public string Title{get;set;}
+    [Parameter] public string Body{get;set;}
+}

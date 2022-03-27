@@ -1,0 +1,58 @@
+﻿@page "/Forum"
+@using Models
+@using LogInApp.Persistence
+@inject IFileContext _fileContext;
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<EditForm Model="@_post" OnValidSubmit="@AddNewPost">
+    <div class="container">
+        <div class=" text-center mt-1 ">
+            <h1>Add post</h1>
+            <DataAnnotationsValidator/>
+            <ValidationSummary/>
+        </div>
+        <div class="row ">
+            <div class="col-lg-7 mx-auto">
+                <div class="card mt-2 mx-auto p-4 bg-light">
+                    <div class="card-body bg-light">
+                        <div class="container">
+
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="form_name">Title *</label>
+                                            <InputTextArea rows="1" id="form_name" @bind-Value="_post.PostTitle" type="text" name="name" class="form-control" placeholder="Please enter title *" required="required" data-error="Name is required."></InputTextArea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="form_species">Body *</label>
+                                            <InputTextArea rows="1" id="form_species" @bind-Value="_post.Body" type="text" name="species" class="form-control" placeholder="Please enter body *" required="required" data-error="Species is required."></InputTextArea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Send Message">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    private Post _post = new Post();
+
+    private void AddNewPost()
+    {
+        _fileContext.AddPost(_post);
+    }
+    
+
+}
