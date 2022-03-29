@@ -3,7 +3,7 @@
 @inject NavigationManager NavigationManager
 
 
-<PageTitle>LogInApp</PageTitle>
+<PageTitle>LogInApp9</PageTitle>
 
 <div class="page">
     <div class="sidebar">
@@ -35,7 +35,7 @@
         var user = (await AuthStat).User;
         if (!user.Identity.IsAuthenticated)
         {
-            NavigationManager.NavigateTo($"/Forum");
+            NavigationManager.NavigateTo($"/LogIn");
         }
     }
 

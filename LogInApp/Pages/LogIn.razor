@@ -1,4 +1,6 @@
-﻿@page "/LogIn"
+﻿@layout LoginLayout
+@page "/"
+@page "/LogIn"
 @using LogInApp.Authentication
 @inject IAuthService authService
 @inject NavigationManager navMgr
@@ -46,7 +48,7 @@
         try
         {
             await authService.LoginAsync(userName, password);
-            navMgr.NavigateTo("/");
+            navMgr.NavigateTo("/Forum");
         }
         catch (Exception e)
         {
